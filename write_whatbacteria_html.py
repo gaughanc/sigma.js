@@ -7,9 +7,9 @@ edges = []
 node_color = "#ec5148"
 edge_color = "#f28f8a"
 for i in range(len(genera)):
-    nodes.append({"id":"gn"+str(i), "label":genera[i], "x":random.randint(1,100), "y":random.randint(1,100), "size":15, "color":node_color})
+    nodes.append({"id":"gn"+str(i), "label":genera[i], "x":10*i, "y":random.randint(100,500), "size":15, "color":node_color})
     for j in range(len(species[i])):
-        nodes.append({"id":"sn"+str(i)+str(j), "label":species[i][j], "x":random.randint(1,100), "y":random.randint(1,100), "size":5, "color":node_color})
+        nodes.append({"id":"sn"+str(i)+str(j), "label":species[i][j], "x":10*i-10+j, "y":random.randint(550,1000), "size":5, "color":node_color})
         edges.append({"id":"e"+str(i)+str(j), "source":"gn"+str(i), "target":"sn"+str(i)+str(j),"size":20,"color":edge_color})
 
 scripta = """<!-- START SIGMA IMPORTS -->
