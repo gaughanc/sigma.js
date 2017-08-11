@@ -11,10 +11,7 @@ orange = "#ffce96"
 grey = "#e0d8d5"
 salmon = "#f28f8a"
 for i, genus in enumerate(genera):
-    color = red
-    nodes.append({"id":"gn"+str(i), "label":genus, "x":10*i, "y":random.randint(100,500), "size":15, "color":color})
     for j, spec in enumerate(species[i]):
-        print(len(catalase))
         if catalase[i][j] == "catalase positive":
             color = orange
             catcount[i][0] += 1
@@ -25,6 +22,13 @@ for i, genus in enumerate(genera):
             color = grey
         nodes.append({"id":"sn"+str(i)+str(j), "label":spec, "x":10*i-10+j, "y":random.randint(550,1000), "size":5, "color":color})
         edges.append({"id":"e"+str(i)+str(j), "source":"gn"+str(i), "target":"sn"+str(i)+str(j),"size":20,"color":salmon})
+    if catcount[i][0] > catcount[i][1]:
+        color = orange
+    if catcount[i][0] < catcount[i][1]:
+        color = red
+    else:
+        color = grey
+    nodes.append({"id":"gn"+str(i), "label":genus, "x":10*i, "y":random.randint(100,500), "size":15, "color":color})
 
 scripta = """<!-- START SIGMA IMPORTS -->
 <script src="../src/sigma.core.js"></script>
