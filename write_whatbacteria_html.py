@@ -43,7 +43,8 @@ for i, genus in enumerate(genera):
     for lin in lins:
         if len(lin) == 6:
             if lin[5] == genus:
-                nodes.append({"id":"fn"+str(i), "label":lin[4], "x":10*i, "y":random.randint(10,90), "size":25, "color":grey})
+                if not any(node["label"] == lin[4] for node in nodes):
+                    nodes.append({"id":"fn"+str(i), "label":lin[4], "x":10*i, "y":random.randint(10,90), "size":25, "color":grey})
                 break
 
 scripta = """<!-- START SIGMA IMPORTS -->
