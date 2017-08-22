@@ -44,21 +44,13 @@ for i, genus in enumerate(genera):
         if len(lin) == 6:
             #if the genus appears
             if lin[5] == genus:
-                #if its family does not have a node, create one
-                if not any(node["label"] == lin[4] for node in nodes):
-                    nodes.append({"id":"fn"+str(i), "label":lin[4], "x":10*i+10, "y":random.randint(400,500), "size":20, "color":grey})
-                #if its order does not have a node, create one
-                if not any(node["label"] == lin[3] for node in nodes):
-                    nodes.append({"id":"on"+str(i), "label":lin[3], "x":10*i, "y":random.randint(200,300), "size":25, "color":grey})
-                #class
-                if not any(node["label"] == lin[2] for node in nodes):
-                    nodes.append({"id":"cn"+str(i), "label":lin[2], "x":11*i, "y":random.randint(90,100), "size":30, "color":grey})
-                #phylum
-                if not any(node["label"] == lin[1] for node in nodes):
-                    nodes.append({"id":"pn"+str(i), "label":lin[1], "x":11*i+10, "y":40, "size":35, "color":grey})
-                #domain
-                if not any(node["label"] == lin[0] for node in nodes):
-                    nodes.append({"id":"dn"+str(i), "label":lin[0], "x":700, "y":0, "size":40, "color":grey})
+                xs = [10*i+10, 10*i, 11*i, 11*i+10, 700]
+                ys = [random.randint(400,500), random.randint(200,300), random.randint(90,100), 40, 0]
+                sizes = [20, 25, 30, 35, 40]
+                for j, n in enumerate([4, 3, 2, 1, 0]):
+                    #if one of its taxon levels does not have a node, create one
+                    if not any(node["label"] == lin[n] for node in nodes):
+                        nodes.append({"id":"tn"+str(n)+str(i), "label":lin[n], "x":xs[j], "y":ys[j], "size":sizes[j], "color":grey})
                 #for each node
                 for node in nodes:
                     #if its label belongs to the genus' family, connect the node to the genus
@@ -71,7 +63,7 @@ for i, genus in enumerate(genera):
                             #if its label belongs to the genus' order, connect the  node to the family
                             if node["label"] == lin[3]:
                                 edges.append({"id":"oe"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
-                                #mark the family node
+                                #mark the order node
                                 source = node["id"]
                                 #for each node
                                 for node in nodes:
