@@ -47,16 +47,18 @@ for i, genus in enumerate(genera):
                 #if its family does not have a node, create one
                 if not any(node["label"] == lin[4] for node in nodes):
                     nodes.append({"id":"fn"+str(i), "label":lin[4], "x":10*i, "y":random.randint(200,400), "size":25, "color":grey})
+                #if its order does not have a node, create one
+                if not any(node["label"] == lin[3] for node in nodes):
+                    nodes.append({"id":"on"+str(i), "label":lin[3], "x":10*i, "y":random.randint(0,150), "size":30, "color":grey})               
                 #for each node
                 for node in nodes:
                     #if its label is the genus' family, connect the node to the genus
                     if node["label"] == lin[4]:
                         edges.append({"id":"fe"+str(i), "source":"gn"+str(i), "target":node["id"],"size":20,"color":salmon})
-                #if its order does not have a node, create one
-                if not any(node["label"] == lin[3] for node in nodes):
-                    nodes.append({"id":"on"+str(i), "label":lin[3], "x":10*i, "y":random.randint(0,150), "size":30, "color":grey})
+                    #if its label is the genus' order, connect the node to the order
+                    if node["label"] == lin[3]:
+                        edges.append({"id":"oe"+str(i), "source":"gn"+str(i), "target":node["id"],"size":20,"color":salmon})
                 break
-            
 
 scripta = """<!-- START SIGMA IMPORTS -->
 <script src="../src/sigma.core.js"></script>
