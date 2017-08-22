@@ -12,6 +12,7 @@ edges = []
 
 #define colors
 red = "#ec5148"
+maroon = "#9b1b1b"
 orange = "#ffce96"
 grey = "#e0d8d5"
 salmon = "#f28f8a"
@@ -23,10 +24,10 @@ for i, genus in enumerate(genera):
             color = orange
             catcount[i][0] += 1
         elif catalase[i][j] == "catalase negative":
-            color = red
+            color = maroon
             catcount[i][1] += 1
         else:
-            color = grey
+            color = red
         #create a node for each of its species
         nodes.append({"id":"sn"+str(i)+str(j), "label":spec, "x":10*i-10+j, "y":random.randint(850,1000), "size":5, "color":color})
         #create an edge from the genus to each of its species
@@ -34,9 +35,9 @@ for i, genus in enumerate(genera):
     if catcount[i][0] > catcount[i][1]:
         color = orange
     if catcount[i][0] < catcount[i][1]:
-        color = red
+        color = maroon
     else:
-        color = grey
+        color = red
     #create a node for the genus
     nodes.append({"id":"gn"+str(i), "label":genus, "x":10*i, "y":random.randint(600,800), "size":15, "color":color})
     #for each lineadge
@@ -50,7 +51,7 @@ for i, genus in enumerate(genera):
                 for j, n in enumerate([4, 3, 2, 1, 0]):
                     #if one of its taxon levels does not have a node, create one
                     if not any(node["label"] == lin[n] for node in nodes):
-                        nodes.append({"id":"tn"+str(n)+str(i), "label":lin[n], "x":xs[j], "y":ys[j], "size":sizes[j], "color":grey})
+                        nodes.append({"id":"tn"+str(n)+str(i), "label":lin[n], "x":xs[j], "y":ys[j], "size":sizes[j], "color":red})
                 #for each node
                 for node in nodes:
                     #if its label belongs to the genus' family, connect the node to the genus
