@@ -46,7 +46,7 @@ for i, genus in enumerate(genera):
             #if the genus appears
             if lin[5] == genus:
                 xs = [10*i+10, 10*i, 11*i, 11*i+10, 700]
-                ys = [random.randint(400,500), random.randint(200,300), random.randint(90,100), 40, 0]
+                ys = [random.randint(400,500), random.randint(200,300), random.randint(90,100), 0, -300]
                 sizes = [20, 25, 30, 35, 40]
                 for j, n in enumerate([4, 3, 2, 1, 0]):
                     #if one of its taxon levels does not have a node, create one
