@@ -28,7 +28,7 @@ for i, genus in enumerate(genera):
         else:
             color = grey
         #create a node for each of its species
-        nodes.append({"id":"sn"+str(i)+str(j), "label":spec, "x":10*i-10+j, "y":random.randint(550,1000), "size":5, "color":color})
+        nodes.append({"id":"sn"+str(i)+str(j), "label":spec, "x":10*i-10+j, "y":random.randint(850,1000), "size":5, "color":color})
         #create an edge from the genus to each of its species
         edges.append({"id":"e"+str(i)+str(j), "source":"gn"+str(i), "target":"sn"+str(i)+str(j),"size":20,"color":salmon})
     if catcount[i][0] > catcount[i][1]:
@@ -38,7 +38,7 @@ for i, genus in enumerate(genera):
     else:
         color = grey
     #create a node for the genus
-    nodes.append({"id":"gn"+str(i), "label":genus, "x":10*i, "y":random.randint(200,500), "size":15, "color":color})
+    nodes.append({"id":"gn"+str(i), "label":genus, "x":10*i, "y":random.randint(500,800), "size":15, "color":color})
     #for each lineadge
     for lin in lins:
         if len(lin) == 6:
@@ -46,13 +46,15 @@ for i, genus in enumerate(genera):
             if lin[5] == genus:
                 #if its family does not have a node, create one
                 if not any(node["label"] == lin[4] for node in nodes):
-                    nodes.append({"id":"fn"+str(i), "label":lin[4], "x":10*i, "y":random.randint(0,150), "size":30, "color":grey})
+                    nodes.append({"id":"fn"+str(i), "label":lin[4], "x":10*i, "y":random.randint(200,400), "size":25, "color":grey})
                 #for each node
                 for node in nodes:
                     #if its label is the genus' family, connect the node to the genus
                     if node["label"] == lin[4]:
                         edges.append({"id":"fe"+str(i), "source":"gn"+str(i), "target":node["id"],"size":20,"color":salmon})
                 #if its order does not have a node, create one
+                if not any(node["label"] == lin[3] for node in nodes):
+                    nodes.append({"id":"on"+str(i), "label":lin[3], "x":10*i, "y":random.randint(0,150), "size":30, "color":grey})
                 break
             
 
