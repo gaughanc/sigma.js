@@ -52,10 +52,10 @@ for i, genus in enumerate(genera):
                     nodes.append({"id":"on"+str(i), "label":lin[3], "x":10*i, "y":random.randint(200,300), "size":25, "color":grey})
                 #class
                 if not any(node["label"] == lin[2] for node in nodes):
-                    nodes.append({"id":"cn"+str(i), "label":lin[2], "x":11*i, "y":random.randint(70,100), "size":30, "color":grey})
+                    nodes.append({"id":"cn"+str(i), "label":lin[2], "x":11*i, "y":random.randint(90,100), "size":30, "color":grey})
                 #phylum
                 if not any(node["label"] == lin[1] for node in nodes):
-                    nodes.append({"id":"pn"+str(i), "label":lin[1], "x":11*i+10, "y":random.randint(30,50), "size":35, "color":grey})
+                    nodes.append({"id":"pn"+str(i), "label":lin[1], "x":11*i+10, "y":40, "size":35, "color":grey})
                 #domain
                 if not any(node["label"] == lin[0] for node in nodes):
                     nodes.append({"id":"dn"+str(i), "label":lin[0], "x":700, "y":0, "size":40, "color":grey})
@@ -64,10 +64,20 @@ for i, genus in enumerate(genera):
                     #if its label belongs to the genus' family, connect the node to the genus
                     if node["label"] == lin[4]:
                         edges.append({"id":"fe"+str(i), "source":"gn"+str(i), "target":node["id"],"size":20,"color":salmon})
+                        #mark the family node
                         source = node["id"]
+                        #for each node
                         for node in nodes:
+                            #if its label belongs to the genus' order, connect the  node to the family
                             if node["label"] == lin[3]:
                                 edges.append({"id":"oe"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
+                                #mark the family node
+                                source = node["id"]
+                                #for each node
+                                for node in nodes:
+                                    #if its label belongs to the genus' class, connect the node to the order
+                                    if node["label"] == lin[2]:
+                                        edges.append({"id":"ce"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
                 break
 
 scripta = """<!-- START SIGMA IMPORTS -->
