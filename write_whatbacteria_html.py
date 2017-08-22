@@ -70,6 +70,20 @@ for i, genus in enumerate(genera):
                                     #if its label belongs to the genus' class, connect the node to the order
                                     if node["label"] == lin[2]:
                                         edges.append({"id":"ce"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
+                                        #mark the class node
+                                        source = node["id"]
+                                        #for each node
+                                        for node in nodes:
+                                            #if its label belongs to the genus' phylum, connect the node to the class
+                                            if node["label"] == lin[1]:
+                                                edges.append({"id":"pe"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
+                                                #mark the class node
+                                                source = node["id"]
+                                                #for each node
+                                                for node in nodes:
+                                                    #if its label belongs to the genus' domain, connect the node to the phylum
+                                                    if node["label"] == lin[0]:
+                                                        edges.append({"id":"de"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
                 break
 
 scripta = """<!-- START SIGMA IMPORTS -->
