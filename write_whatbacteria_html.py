@@ -64,6 +64,10 @@ for i, genus in enumerate(genera):
                     #if its label belongs to the genus' family, connect the node to the genus
                     if node["label"] == lin[4]:
                         edges.append({"id":"fe"+str(i), "source":"gn"+str(i), "target":node["id"],"size":20,"color":salmon})
+                        source = node["id"]
+                        for node in nodes:
+                            if node["label"] == lin[3]:
+                                edges.append({"id":"oe"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
                 break
 
 scripta = """<!-- START SIGMA IMPORTS -->
