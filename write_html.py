@@ -17,28 +17,31 @@ maroon = "#9b1b1b"
 orange = "#ffce96"
 grey = "#e0d8d5"
 salmon = "#f28f8a"
+blue = "#5094ce"
+light_blue = "#c7e3f9"
+green = "#82eda7"
 
 #for each genus
 for i, genus in enumerate(genera):
     for j, spec in enumerate(species[i]):
         if catalase[i][j] == "catalase positive":
-            color = orange
+            color = green
             catcount[i][0] += 1
         elif catalase[i][j] == "catalase negative":
-            color = maroon
+            color = red
             catcount[i][1] += 1
         else:
-            color = red
+            color = blue
         #create a node for each of its species
         nodes.append({"id":"sn"+str(i)+str(j), "label":spec, "x":10*i-10+j, "y":random.randint(850,1000), "size":5, "color":color})
         #create an edge from the genus to each of its species
-        edges.append({"id":"se"+str(i)+str(j), "source":"gn"+str(i), "target":"sn"+str(i)+str(j),"size":20,"color":salmon})
-    if catcount[i][0] > catcount[i][1]:
-        color = orange
-    if catcount[i][0] < catcount[i][1]:
-        color = maroon
-    else:
+        edges.append({"id":"se"+str(i)+str(j), "source":"gn"+str(i), "target":"sn"+str(i)+str(j),"size":20,"color":light_blue})
+    if catcount[i][1] < catcount[i][0]:
+        color = green
+    elif catcount[i][0] < catcount[i][1]:
         color = red
+    else:
+        color = blue
     #create a node for the genus
     nodes.append({"id":"gn"+str(i), "label":genus, "x":10*i, "y":random.randint(600,800), "size":15, "color":color})
     #for each lineadge
@@ -46,46 +49,46 @@ for i, genus in enumerate(genera):
         if len(lin) == 6:
             #if the genus appears
             if lin[5] == genus:
-                xs = [10*i+10, 10*i, 11*i, 11*i+10, 700]
+                xs = [10*i+10, 10*i, 11*i, 17*i+25, 750]
                 ys = [random.randint(400,500), random.randint(200,300), random.randint(90,100), 0, -300]
                 sizes = [20, 25, 30, 35, 40]
                 for j, n in enumerate([4, 3, 2, 1, 0]):
                     #if one of its taxon levels does not have a node, create one
                     if not any(node["label"] == lin[n] for node in nodes):
-                        nodes.append({"id":"tn"+str(n)+str(i), "label":lin[n], "x":xs[j], "y":ys[j], "size":sizes[j], "color":red})
+                        nodes.append({"id":"tn"+str(n)+str(i), "label":lin[n], "x":xs[j], "y":ys[j], "size":sizes[j], "color":blue})
                 #for each node
                 for node in nodes:
                     #if its label belongs to the genus' family, connect the node to the genus
                     if node["label"] == lin[4]:
-                        edges.append({"id":"fe"+str(i), "source":"gn"+str(i), "target":node["id"],"size":20,"color":salmon})
+                        edges.append({"id":"fe"+str(i), "source":"gn"+str(i), "target":node["id"],"size":20,"color":light_blue})
                         #mark the family node
                         source = node["id"]
                         #for each node
                         for node in nodes:
                             #if its label belongs to the genus' order, connect the  node to the family
                             if node["label"] == lin[3]:
-                                edges.append({"id":"oe"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
+                                edges.append({"id":"oe"+str(i), "source":source, "target":node["id"],"size":20,"color":light_blue})
                                 #mark the order node
                                 source = node["id"]
                                 #for each node
                                 for node in nodes:
                                     #if its label belongs to the genus' class, connect the node to the order
                                     if node["label"] == lin[2]:
-                                        edges.append({"id":"ce"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
+                                        edges.append({"id":"ce"+str(i), "source":source, "target":node["id"],"size":20,"color":light_blue})
                                         #mark the class node
                                         source = node["id"]
                                         #for each node
                                         for node in nodes:
                                             #if its label belongs to the genus' phylum, connect the node to the class
                                             if node["label"] == lin[1]:
-                                                edges.append({"id":"pe"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
+                                                edges.append({"id":"pe"+str(i), "source":source, "target":node["id"],"size":20,"color":light_blue})
                                                 #mark the class node
                                                 source = node["id"]
                                                 #for each node
                                                 for node in nodes:
                                                     #if its label belongs to the genus' domain, connect the node to the phylum
                                                     if node["label"] == lin[0]:
-                                                        edges.append({"id":"de"+str(i), "source":source, "target":node["id"],"size":20,"color":salmon})
+                                                        edges.append({"id":"de"+str(i), "source":source, "target":node["id"],"size":20,"color":light_blue})
                 break
 
 scripta = """<!-- START SIGMA IMPORTS -->

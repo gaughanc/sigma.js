@@ -1,4 +1,4 @@
-import random
+cimport random
 from create_lin_list import create_lin_list
 from get_lists_test import get_genera, get_g_oxygen
 from get_species_lists import get_species, get_s_oxygen
@@ -13,20 +13,24 @@ nodes = []
 edges = []
 
 #define colors
-dark_blue = "#0a6387" 
-blue = "#5094ce"
-light_blue = "#c7e3f9"
-purple = "#7f609b"
+dark_blue = "#27258c" 
+bc
+
+
+wq
+
+daba;uabu
+
+lue = "#216fb2"
+lightcanpytp_blue = "#beddf7"
+cccccpurple = "#9868d8"
 light_purple = "#d6bbf9"
 maroon = "#9b1b1b"
-redorange = "#ec5148"
-red = "#a8170a"
+red = "#ec5148"
 pink = "#fccff7"
 light_grey = "#e0d8d5"
 grey = "#a3a3a3"
 dark_grey = "#4f4f4f"
-yellow = "#f9dc70"
-green = "#82eda7"
 black = "#000000"
 
 #for each genus
@@ -34,48 +38,48 @@ for i, genus in enumerate(genera):
     for j, spec in enumerate(species[i]):
         o = s_oxygen[i][j]
         if o == "aerobe":
-            color = redorange
+            color = dark_blue
         elif o == "facultative anaerobe":
-            color = light_purple
-        elif o == "microaerobe":
-            color = yellow
-        elif o == "obligate anaerobe":
-            color = blue
-        elif o == "anaerobe (unspecified)":
-            color = light_blue
-        elif o == "microaerobe or anaerobe":
-            color = green
-        elif o == "microaerobe or aerobe":
-            color = pink
-        elif o == "aerotolerant":
             color = purple
+        elif o == "microaerobe":
+            color = light_blue
+        elif o == "obligate anaerobe":
+            color = maroon
+        elif o == "anaerobe (unspecified)":
+            color = red
+        elif o == "microaerobe or anaerobe":
+            color = light_purple
+        elif o == "microaerobe or aerobe":
+            color = blue
+        elif o == "aerotolerant":
+            color = pink
         elif o == "variable":
-            color = yellow
+            color = light_grey
         else:
             color = dark_grey
         #create a node for each of its species
-        nodes.append({"id":"sn"+str(i)+str(j), "label":spec, "x":10*i-10+j, "y":random.randint(850,1000), "size":7, "color":color})
+        nodes.append({"id":"sn"+str(i)+str(j), "label":spec, "x":10*i-10+j, "y":random.randint(850,1000), "size":5, "color":color})
         #create an edge from the genus to each of its species
         edges.append({"id":"se"+str(i)+str(j), "source":"gn"+str(i), "target":"sn"+str(i)+str(j),"size":20,"color":grey})
     o = g_oxygen[i]
     if o == "aerobe":
-        color = redorange
+        color = dark_blue
     elif o == "facultative aerobe":
-        color = light_purple
-    elif o == "microaerobe":
-        color = yellow
-    elif o == "obligate anaerobe":
-        color = blue
-    elif o == "anaerobe (unspecified)":
-        color = light_blue
-    elif o == "microaerobe or anaerobe":
-        color = green
-    elif o == "microaerobe or aerobe":
-        color = pink
-    elif o == "aerotolerant":
         color = purple
+    elif o == "microaerobe":
+        color = light_blue
+    elif o == "obligate anaerobe":
+        color = maroon
+    elif o == "anaerobe (unspecified)":
+        color = red
+    elif o == "microaerobe or anaerobe":
+        color = light_purple
+    elif o == "microaerobe or aerobe":
+        color = blue
+    elif o == "aerotolerant":
+        color = pink
     elif o == "variable":
-        color = yellow
+        color = light_grey
     else:
         color = dark_grey
     #create a node for the genus
@@ -85,7 +89,7 @@ for i, genus in enumerate(genera):
         if len(lin) == 6:
             #if the genus appears
             if lin[5] == genus:
-                xs = [10*i+10, 10*i, 11*i, 17*i+25, 750]
+                xs = [10*i+10, 10*i, 11*i, 11*i+10, 700]
                 ys = [random.randint(400,500), random.randint(200,300), random.randint(90,100), 0, -300]
                 sizes = [20, 25, 30, 35, 40]
                 for j, n in enumerate([4, 3, 2, 1, 0]):
