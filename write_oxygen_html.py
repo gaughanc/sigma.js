@@ -1,6 +1,6 @@
 import random
 from create_lin_list import create_lin_list
-from get_lists_test import get_genera, get_g_oxygen
+from get_genera_lists import get_genera, get_g_oxygen
 from get_species_lists import get_species, get_s_oxygen
 
 #create or define all needed lists
