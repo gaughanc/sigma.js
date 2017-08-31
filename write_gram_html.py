@@ -1,7 +1,6 @@
 import random
 from create_lin_list import create_lin_list
-from get_genera_lists import get_genera, get_g_gram
-from get_species_lists import get_species, get_s_gram
+from get_lists import get_genera, get_g_gram, get_species, get_s_gram
 
 #create or define all needed lists
 lins = create_lin_list()

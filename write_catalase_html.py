@@ -1,12 +1,12 @@
 import random
 from create_lin_list import create_lin_list
-from get_cat_lists import get_genera, get_species, get_catalase, get_catcount
+from get_lists import get_genera, get_species, get_cat, get_catcount
 
 #create or define all needed lists
 lins = create_lin_list()
 genera = get_genera()
 species = get_species()
-catalase = get_catalase()
+catalase = get_cat()
 catcount = get_catcount()
 nodes = []
 edges = []

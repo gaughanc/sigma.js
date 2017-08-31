@@ -1,7 +1,6 @@
 import random
 from create_lin_list import create_lin_list
-from get_genera_lists import get_genera, get_g_morph
-from get_species_lists import get_species, get_s_morph
+from get_lists import get_genera, get_g_morph, get_species, get_s_morph, get_morph_choices
 
 #create or define all needed lists
 lins = create_lin_list()
@@ -9,6 +8,7 @@ genera = get_genera()
 species = get_species()
 g_phen = get_g_morph()
 s_phen = get_s_morph()
+f_choices = get_morph_choices()
 nodes = []
 edges = []
 
@@ -32,35 +32,35 @@ black = "#000000"
 edge_color = light_grey
 def_node_color = grey
 
-a_options = ["rod/ bacilli", "oval-shaped/ coccobaccili", "cocci"]
-a_colors = [light_purple, redorange, yellow]
+f_colors = [light_purple, redorange, yellow, blue, pink, light_blue, green, purple, light_blue]
 
 #for each genus
 for i, genus in enumerate(genera):
     for j, spec in enumerate(species[i]):
-        a = s_phen[i][j]
-        if a == a_options[0]:
-            color = a_colors[0]
-        elif a == a_options[1]:
-            color = a_colors[1]
-        elif a == a_options[2]:
-            color = a_colors[2]
-        elif a == "not indicated":
+        f = s_phen[i][j]
+        if f == f_choices[0]:
+            color = f_colors[0]
+        elif f == f_choices[1]:
+            color = f_choices[1]
+        elif f == f_choices[2]:
+            color = f_colors[2]
+        elif f == "not indicated":
             color = def_node_color
+        # if black nodes exist, not enough colors were assigned
         else:
             color = black
         #create a node for each of its species
         nodes.append({"id":"sn"+str(i)+str(j), "label":spec, "x":10*i-10+j, "y":random.randint(850,1000), "size":7, "color":color})
         #create an edge from the genus to each of its species
         edges.append({"id":"se"+str(i)+str(j), "source":"gn"+str(i), "target":"sn"+str(i)+str(j),"size":20,"color":edge_color})
-    a = g_phen[i]
-    if a == a_options[0]:              
-        color = a_colors[0]   
-    elif a == a_options[1]:
-        color = a_colors[1]
-    elif a == a_options[2]:
-        color = a_colors[2]
-    elif a == "not indicated":
+    f = g_phen[i]
+    if f == f_choices[0]:              
+        color = f_colors[0]   
+    elif f == f_choices[1]:
+        color = f_colors[1]
+    elif f == f_choices[2]:
+        color = f_colors[2]
+    elif f == "not indicated":
         color = def_node_color
     else:
         color = black
