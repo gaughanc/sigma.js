@@ -1,12 +1,12 @@
 import random
 from create_lin_list import create_lin_list
-from get_lists import get_genera, get_species, get_cat, get_catcount
+from get_lists import get_genera, get_species, get_urease, get_catcount
 
 #create or define all needed lists
 lins = create_lin_list()
 genera = get_genera()
 species = get_species()
-catalase = get_cat()
+urease = get_urease()
 count = get_catcount()
 nodes = []
 edges = []
@@ -24,10 +24,10 @@ green = "#82eda7"
 #for each genus
 for i, genus in enumerate(genera):
     for j, spec in enumerate(species[i]):
-        if catalase[i][j] == "catalase positive":
+        if urease[i][j] == "urease positive":
             color = green
             count[i][0] += 1
-        elif catalase[i][j] == "catalase negative":
+        elif urease[i][j] == "urease negative":
             color = red
             count[i][1] += 1
         else:
